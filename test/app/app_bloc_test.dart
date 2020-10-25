@@ -1,14 +1,10 @@
-import 'package:flutter_modular/flutter_modular_test.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:my_todos/app/app_module.dart';
-import 'package:my_todos/my_todos/app/app_bloc.dart';
-import 'package:my_todos/my_todos/app/app_module.dart';
 
 void main() {
   Modular.init(AppModule());
   Modular.bindModule(AppModule());
-  AppBloc bloc;
+  // AppBloc bloc;
 
   // setUp(() {
   //     bloc = AppModule.to.get<AppBloc>();
