@@ -38,6 +38,7 @@ class TaskCard extends StatelessWidget {
               _taskBloc.showModalTask(task);
             }
           ),
+          if(task.dataConclusao == null)
           FocusedMenuItem(
             title: Text("Editar"),
             trailingIcon: Icon(Icons.edit) ,

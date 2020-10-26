@@ -113,7 +113,7 @@ class RegisterBloc extends Disposable {
             content: Text("Para finalizar seu cadastro, é necessário atender alguns requisitos de idade."),
             actions: [
               FlatButton(
-                onPressed: () => Get.close(2),
+                onPressed: () => Get.back(),
                 child: Text("ok")
               )
             ],
