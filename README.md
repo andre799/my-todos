@@ -8,9 +8,18 @@ Primeiro, abra a pasta principal do projeto em seu editor de código-fonte.
 
 Aguarde a conclusão da análise de código feita pelo editor, como o exemplo abaixo:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- VSCode <img src="assets/readme/analyzing_vscode.png">
+- Android Studio <img src="assets/readme/analyzing_astudio.png">
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Agora, execute o comando **flutter pub get** para obter todas as dependências listadas no arquivo **pubspec.yaml**.
+
+Após concluir os passos acima, você poderá executar o projeto. Siga os exemplos a baixo para os editores **VS Code** e **Android Studio**
+
+- VSCode
+<img src="assets/readme/execute_vscode.png">
+
+- Android Studio
+<img src="assets/readme/execute_androidstudio.png">
+
+Para mais informações sobre Flutter, acesse a 
+[documentação online](https://flutter.dev/docs).
