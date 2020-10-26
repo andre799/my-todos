@@ -2,7 +2,7 @@
 
 App para cadastro de tarefas.
 
-## Iniciar Proejto
+## Iniciar Projeto
 
 Primeiro, abra a pasta principal do projeto em seu editor de código-fonte.
 
