@@ -21,6 +21,7 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  cep: ^1.0.3
   focused_menu: ^1.0.1
   auto_size_text: ^2.1.0
   date_format: ^1.0.9
@@ -28,7 +29,6 @@ dependencies:
   path: ^1.7.0
   sqflite: ^1.3.1+2
   path_provider: ^1.6.22
-  search_cep: ^3.0.0+2
   cpf_cnpj_validator: ^1.0.5
   brasil_fields: ^0.4.0
   mask_text_input_formatter: ^1.1.0

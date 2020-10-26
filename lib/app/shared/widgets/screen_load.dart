@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
+// Widget padrão de load
 class ScreenLoad extends StatelessWidget {
 
   final String message;

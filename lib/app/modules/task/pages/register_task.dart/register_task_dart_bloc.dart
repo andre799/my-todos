@@ -17,26 +17,30 @@ class RegisterTaskBloc extends Disposable {
 
   RegisterTaskBloc(this._taskRepository, this._taskBloc, this._authBloc);
 
+  // Variáveis usadas para criar / editar tarefa
   DateTime dataConclusao;
   DateTime dataEntrega;
   String nome;
 
+  // Controller dos campos para preenchimento
   var dataConclusaoController = TextEditingController();
   var dataEntregaController = TextEditingController();
 
+  // Variáveis
   String loadMessage;
-
   final formKey = GlobalKey<FormState>();
 
+  // Stream que controla o status da tela
   final _statusStream = BehaviorSubject<PageStatus>();
-
   Function(PageStatus) get setStatus => _statusStream.sink.add;
   Stream<PageStatus> get getStatus => _statusStream.stream;
 
+  // Função para formatar data
   String formatDateBr(DateTime data){
     return formatDate(data, [dd, '/', mm, '/', yyyy,]);
   }
 
+  // Função para chamar o datePicker
   Future<void> getDate(bool conclusao) async {
     var date = await showDatePicker(
       locale: Locale('pt', 'BR'),
@@ -58,6 +62,7 @@ class RegisterTaskBloc extends Disposable {
     
   }
 
+  // Carrega as variáveis com as informações da tarefa caso se trate de uma edição
   void loadTaskEdit(TaskModel task){
     dataConclusao = task.dataConclusao;
     if(task.dataConclusao != null)
@@ -67,6 +72,7 @@ class RegisterTaskBloc extends Disposable {
     nome = task.nome;
   }
 
+  // Função para arualizar a tarefa selecionada para edição
   Future<void> updateTask(TaskModel task)async{
 
     await Future.delayed(Duration(milliseconds: 500));
@@ -86,7 +92,10 @@ class RegisterTaskBloc extends Disposable {
     _taskBloc.updateTask(task);
   }
 
+  // Função para adicionar tarefa
   Future<void> addTask()async{
+
+    await Future.delayed(Duration(milliseconds: 500));
 
     if(!formKey.currentState.validate()) return;
 

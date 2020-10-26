@@ -369,15 +369,17 @@ class _RegisterPageState extends ModularState<RegisterPage, RegisterBloc> {
                                       ),
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(5.0),
-                                    child: ProgressButton(
-                                      color: Get.theme.primaryColor,
-                                      onPressed: () async {
-                                        await controller.register();
-                                      },
-                                      defaultWidget: Text("CONFIRMAR", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
-                                      progressWidget:  CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: ProgressButton(
+                                        color: Get.theme.primaryColor,
+                                        onPressed: () async {
+                                          await controller.register();
+                                        },
+                                        defaultWidget: Text("CONFIRMAR", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
+                                        progressWidget:  CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
+                                      ),
                                     ),
                                   ),
                                 ],

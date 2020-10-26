@@ -1,4 +1,4 @@
-# my_todos
+# my_tasks
 
 A new Flutter project. Created by Slidy
 

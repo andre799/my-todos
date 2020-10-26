@@ -9,12 +9,28 @@ class AuthRepository{
 
   AuthRepository(this.dbRepository);
 
+  // Função para criar usuário
   Future<UserModel> createUser(UserModel user) async {
     var id = await dbRepository.db.insert(dbRepository.userTable, user.toMap());
     user.id = id;
     return user;
   }
 
+  // Função que verifica se o usuário já existe
+  Future<bool> userExists(String email) async {
+    final sql = '''SELECT * FROM ${dbRepository.userTable}
+    WHERE email = ?''';
+
+    List<dynamic> params = [email];
+
+    final data = await dbRepository.db.rawQuery(sql, params);
+
+    return data.length > 0 ?
+    true : false;
+
+  }
+
+  // Autenticação, busca o usuário utilizando email e verifica a senha
   Future<UserModel> getUser(String email, String senha) async {
     await Future.delayed(Duration(seconds: 1));
 

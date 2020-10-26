@@ -33,7 +33,7 @@ class _RegisterTaskPageState extends ModularState<RegisterTaskPage, RegisterTask
       builder: (context, snapshot) {
         return Scaffold(
           appBar: AppBar(
-            title: Text("ADICIONAR TAREFA", style: TextStyle(fontSize: 20),),
+            title: Text(widget.task != null ? "EDITAR TAREFA" : "ADICIONAR TAREFA", style: TextStyle(fontSize: 20),),
             centerTitle: true,
           ),
           body: Stack(

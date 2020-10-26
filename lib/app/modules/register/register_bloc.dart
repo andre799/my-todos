@@ -1,13 +1,12 @@
+import 'package:cep/cep.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:my_todos/app/shared/blocs/auth_bloc.dart';
 import 'package:my_todos/app/shared/models/user_model.dart';
-import 'package:my_todos/app/shared/repositories/db_repository.dart';
 import 'package:my_todos/app/shared/utils/enums.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:search_cep/search_cep.dart';
 
 class RegisterBloc extends Disposable {
 
@@ -17,7 +16,6 @@ class RegisterBloc extends Disposable {
   
   // Stream que controla o status da tela
   final _statusStream = BehaviorSubject<PageStatus>();
-
   Function(PageStatus) get setStatus => _statusStream.sink.add;
   Stream<PageStatus> get getStatus => _statusStream.stream;
 
@@ -26,12 +24,11 @@ class RegisterBloc extends Disposable {
   Function(bool) get setVisibility => _passwordVisibilityController.sink.add;
   Stream<bool> get getVisibility => _passwordVisibilityController.stream;
   
-  // Variaveis usadas para fazer login
+  // Variaveis usadas para fazer o cadastro
   String nome, dataNascimento, cpf, cep, email, senha, endereco, numero = "";
 
   // Variáveis
   String messageLoading = "";
-  final viaCepSearchCep = ViaCepSearchCep();
 
   // Controller do campo de endereço para autocomplete
   var enderecoController = TextEditingController();
@@ -80,15 +77,12 @@ class RegisterBloc extends Disposable {
     messageLoading = "Buscando CEP";
     setStatus(PageStatus.loading);
     try{
-      final postmonSearchCep = ViaCepSearchCep();
-      final infoCepJSON = await postmonSearchCep.searchInfoByCep(
-          cep: cep.replaceAll(RegExp(r'[^\d]'), ''));
-      if (infoCepJSON.fold((l) => null, (r) => r) != null) {
-        var logradouro = infoCepJSON.fold((l) => null, (r) => r.logradouro);
-        var bairro = infoCepJSON.fold((l) => null, (r) => r.bairro);
-        var cidade =
-            infoCepJSON.fold((l) => null, (r) => r.localidade);
-        var uf = infoCepJSON.fold((l) => null, (r) => r.uf);
+      var consulta = await Cep.consultarCep(cep);
+      if (consulta.logradouro != null) {
+        var logradouro = consulta.logradouro;
+        var bairro = consulta.bairro;
+        var cidade = consulta.cidade;
+        var uf = consulta.uf;
         enderecoController.text = "$logradouro, $bairro, $cidade-$uf";
         numeroFocus.requestFocus();
         setStatus(PageStatus.initial);
@@ -125,6 +119,12 @@ class RegisterBloc extends Disposable {
             ],
           )
         );
+        return;
+      }
+      if(await _authBloc.userExists(email)){
+        await Future.delayed(Duration(milliseconds: 500));
+        Get.rawSnackbar(message: "Usuário já existente!");
+        setStatus(PageStatus.initial);
         return;
       }
       var user = UserModel(

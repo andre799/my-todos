@@ -29,7 +29,7 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(MaterialCommunityIcons.playlist_plus),
+        child: Icon(MaterialCommunityIcons.playlist_plus, color: Colors.white,),
         onPressed: () => Get.toNamed('/tasks/register'),
       ),
       body: StreamBuilder<List<TaskModel>>(
@@ -75,9 +75,16 @@ class _TaskPageState extends ModularState<TaskPage, TaskBloc> {
             itemBuilder: (context, index) {
               var task = tasks[index];
 
-              return InkWell(
-                onTap: () => Get.toNamed('/tasks/register', arguments: task),
-                child: TaskCard(index: index, task: task,)
+              return Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TaskCard(index: index, task: task,),
+                  if(index == tasks.length - 1)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 15),
+                    child: Text("Segure em cima da tarefa para visualizar mais opções.", style: TextStyle(color: Colors.black38),),
+                  )
+                ],
               );
 
             },
