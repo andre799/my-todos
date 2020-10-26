@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_progress_button/flutter_progress_button.dart';
 import 'package:get/get.dart';
-import 'package:my_todos/app/modules/task/pages/register_task.dart/register_task_dart_bloc.dart';
+import 'package:my_todos/app/modules/task/pages/register_task/register_task_bloc.dart';
 import 'package:my_todos/app/shared/models/task_model.dart';
 import 'package:my_todos/app/shared/utils/enums.dart';
 import 'package:my_todos/app/shared/widgets/screen_load.dart';
@@ -63,10 +64,10 @@ class _RegisterTaskPageState extends ModularState<RegisterTaskPage, RegisterTask
                                 AutovalidateMode.always : null,
                                 onChanged: (v) => controller.nome = v,
                                 validator: (v) =>
-                                v.isEmpty ? "Preencha o nome" :
+                                v.isEmpty ? "Preencha o nome da tarefa" :
                                 null,
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.person, color: Colors.black26,),
+                                  prefixIcon: Icon(MaterialCommunityIcons.card_text_outline, color: Colors.black26,),
                                   border: InputBorder.none,
                                   hintText: "Nome",
                                   hintStyle: TextStyle(color: Colors.black26)
@@ -138,7 +139,7 @@ class _RegisterTaskPageState extends ModularState<RegisterTaskPage, RegisterTask
                                           AutovalidateMode.always : null,
                                           onChanged: (v) => controller.nome = v,
                                           decoration: InputDecoration(
-                                            prefixIcon: Icon(Icons.person, color: Colors.black26,),
+                                            prefixIcon: Icon(Icons.date_range_outlined, color: Colors.black26,),
                                             border: InputBorder.none,
                                             hintText: controller.formatDateBr(DateTime.now().add(Duration(days: 30))),
                                             hintStyle: TextStyle(color: Colors.black26)

@@ -1,8 +1,7 @@
-import 'package:my_todos/app/modules/task/pages/register_task.dart/register_task_dart_page.dart';
-
-import 'pages/register_task.dart/register_task_dart_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'pages/register_task/register_task_bloc.dart';
+import 'pages/register_task/register_task_page.dart';
 import 'repositories/task_repository.dart';
 import 'task_bloc.dart';
 import 'task_page.dart';
