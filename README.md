@@ -1,12 +1,12 @@
 # my_tasks
 
-A new Flutter project. Created by Slidy
+App para cadastro de tarefas.
 
-## Getting Started
+## Iniciar Proejto
 
-This project is a starting point for a Flutter application.
+Primeiro, abra a pasta principal do projeto em seu editor de código-fonte.
 
-A few resources to get you started if this is your first Flutter project:
+Aguarde a conclusão da análise de código feita pelo editor, como o exemplo abaixo:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
