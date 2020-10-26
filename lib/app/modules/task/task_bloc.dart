@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:my_todos/app/modules/task/repositories/task_repository.dart';
 import 'package:my_todos/app/shared/blocs/auth_bloc.dart';
 import 'package:my_todos/app/shared/models/task_model.dart';
+import 'package:my_todos/app/shared/widgets/dialog.dart';
 import 'package:rxdart/rxdart.dart';
 
 class TaskBloc extends Disposable {
@@ -98,7 +99,10 @@ class TaskBloc extends Disposable {
               : ProgressButton(
                 color: Get.theme.primaryColor,
                 onPressed: () async {
-                  concluirTask(task);
+                  if(await dialogConfirm('Concluir tarefa', 'Deseja realmente concluir essa tarefa?')){
+                    concluirTask(task);
+                    Get.back();
+                  }
                 },
                 defaultWidget: Text("CONCLUIR", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),),
                 progressWidget:  CircularProgressIndicator(valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),),
